@@ -1,0 +1,18 @@
+<p *ngIf="!quiz"><em>Loading...</em></p>
+
+<div *ngIf="quiz">
+
+  <div *ngFor="let question of quiz.questions">
+  {{question.title}}
+
+  <ul>
+    <li *ngFor="let answer of question.answerOptions">
+        <input type="checkbox" [(ngModel)]="answer.checked">{{answer.title}}
+    </li>
+  </ul>
+
+  </div>
+
+  <button (click)="SendAnswers()">Send Answers</button>
+
+</div>

@@ -1,0 +1,7 @@
+<h2>Select Quiz</h2>
+
+<p *ngIf="!quizzes"><em>Loading...</em></p>
+
+<ul *ngIf="quizzes">
+  <li *ngFor="let quiz of quizzes"><a routerLink="/{{quiz.permalink}}">{{quiz.title}}</a></li>
+</ul>
