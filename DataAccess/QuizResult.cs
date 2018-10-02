@@ -14,4 +14,23 @@ namespace pollService.DataAccess
 
         public string Result { get; set; }
     }
+
+    public class Statistics
+    {
+        public int QuestionsCount { get; set; }
+        public int CorrectAnswersCount { get; set; }
+
+        public List<StatisticItem> Items { get; set; }
+
+    }
+
+    public class StatisticItem
+    {
+        public int QuestionId { get; set; }
+
+        public bool CorrectAnswer { get; set; }
+
+        public List<int> AnswersOptions { get; set; }
+        public string TextAnswer { get; set; }
+    }
 }
