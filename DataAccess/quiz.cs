@@ -7,7 +7,7 @@ namespace pollService.DataAccess
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Permalink {get; set;}
-        public List<Question> Questions {get; set;}
+        public string Permalink { get; set; }
+        public ICollection<Question> Questions { get; set; }
     }
 }

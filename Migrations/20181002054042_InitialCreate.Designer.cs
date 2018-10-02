@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pollService.DataAccess;
 
 namespace pollService.Migrations
 {
     [DbContext(typeof(PollContext))]
-    partial class PollContextModelSnapshot : ModelSnapshot
+    [Migration("20181002054042_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,8 +40,6 @@ namespace pollService.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("QuestionType");
 
                     b.Property<int?>("QuizId");
 
@@ -88,14 +88,14 @@ namespace pollService.Migrations
 
             modelBuilder.Entity("pollService.DataAccess.AnswerOption", b =>
                 {
-                    b.HasOne("pollService.DataAccess.Question")
+                    b.HasOne("pollService.DataAccess.Question", "Question")
                         .WithMany("AnswerOptions")
                         .HasForeignKey("QuestionId");
                 });
 
             modelBuilder.Entity("pollService.DataAccess.Question", b =>
                 {
-                    b.HasOne("pollService.DataAccess.Quiz")
+                    b.HasOne("pollService.DataAccess.Quiz", "Quiz")
                         .WithMany("Questions")
                         .HasForeignKey("QuizId");
                 });

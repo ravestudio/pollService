@@ -9,8 +9,8 @@ using pollService.DataAccess;
 namespace pollService.Migrations
 {
     [DbContext(typeof(PollContext))]
-    [Migration("20180930125821_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20181002084918_addQuestionType")]
+    partial class addQuestionType
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace pollService.Migrations
 
                     b.Property<bool>("Correct");
 
-                    b.Property<int>("QuestionId");
+                    b.Property<int?>("QuestionId");
 
                     b.Property<string>("Title");
 
@@ -41,7 +41,11 @@ namespace pollService.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("QuestionType");
+
                     b.Property<int?>("QuizId");
+
+                    b.Property<string>("TextAnswer");
 
                     b.Property<string>("Title");
 
@@ -66,18 +70,42 @@ namespace pollService.Migrations
                     b.ToTable("QuizSet");
                 });
 
+            modelBuilder.Entity("pollService.DataAccess.QuizResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<int?>("QuizId");
+
+                    b.Property<string>("Result");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuizId");
+
+                    b.ToTable("QuizResultSet");
+                });
+
             modelBuilder.Entity("pollService.DataAccess.AnswerOption", b =>
                 {
                     b.HasOne("pollService.DataAccess.Question")
                         .WithMany("AnswerOptions")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("QuestionId");
                 });
 
             modelBuilder.Entity("pollService.DataAccess.Question", b =>
                 {
                     b.HasOne("pollService.DataAccess.Quiz")
                         .WithMany("Questions")
+                        .HasForeignKey("QuizId");
+                });
+
+            modelBuilder.Entity("pollService.DataAccess.QuizResult", b =>
+                {
+                    b.HasOne("pollService.DataAccess.Quiz", "Quiz")
+                        .WithMany()
                         .HasForeignKey("QuizId");
                 });
 #pragma warning restore 612, 618

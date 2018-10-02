@@ -1,7 +1,7 @@
 import {Question} from './question'
 
 export class Quiz{
-    Id: number;
+    id: number;
     title: string;
     permalink: string;
 

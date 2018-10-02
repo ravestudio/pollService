@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { QuizService }  from '../quiz.service';
+import { QuizService } from '../quiz.service';
+import { AnswerService } from '../answer.service';
 import {Quiz} from '../quiz'
 
 @Component({
@@ -12,7 +13,7 @@ import {Quiz} from '../quiz'
 export class QuizViewComponent implements OnInit {
   quiz:Quiz;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService) { }
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private answerService: AnswerService) { }
 
   ngOnInit() {
     this.getQuiz();
@@ -24,7 +25,12 @@ export class QuizViewComponent implements OnInit {
       .subscribe(quiz => this.quiz = quiz);
   }
 
-  SendAnswers(): void { 
+  SendAnswers(): void {
+
+    this.answerService.addQuiz(this.quiz)
+      .subscribe(msg =>
+        console.log(msg)
+      );
 
   }
 

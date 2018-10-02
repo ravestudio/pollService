@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import {Quiz} from './quiz';
 
@@ -13,7 +14,7 @@ export class QuizService {
 
   /** GET quizzes from the server */
   getQuizzes (): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.quizzesUrl)
+    return this.http.get<Quiz[]>(this.quizzesUrl);
   }
 
    /** GET quiz by permalink.*/

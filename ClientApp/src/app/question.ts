@@ -1,7 +1,10 @@
 import {AnswerOption} from './answerOption'
 
-export class Question{
-    Id: number;
-    title: string;
-    answerOptions: AnswerOption[];
+export class Question {
+  id: number;
+  title: string;
+  questionType: number;
+  answerOptions: AnswerOption[];
+  userAnswer: number;
+  userTextAnswer: string;
 }

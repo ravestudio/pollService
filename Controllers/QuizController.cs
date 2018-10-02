@@ -9,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace pollService.Controllers
 {
     [Route("api/[controller]")]
-    public class QuizController : Controller
+    [ApiController]
+    public class QuizController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<Quiz> Get()
@@ -25,7 +26,7 @@ namespace pollService.Controllers
         }
 
         [HttpGet("{permalink}")]
-        public Quiz GetByPermalink(string permalink)
+        public Quiz Get(string permalink)
         {
             Quiz result = null;
 
@@ -34,7 +35,19 @@ namespace pollService.Controllers
                 result = db.QuizSet.Include("Questions").Include("Questions.AnswerOptions").Single(q => q.Permalink == permalink);
             }
 
+            //hide correct answers
+            foreach(var question in result.Questions)
+            {
+                question.TextAnswer = null;
+
+                foreach(var answer in question.AnswerOptions)
+                {
+                    answer.Correct = false;
+                }
+            }
+
             return result;
         }
+
     }
 }

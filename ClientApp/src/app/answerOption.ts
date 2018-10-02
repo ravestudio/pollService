@@ -1,5 +1,5 @@
 export class AnswerOption{
-    Id: number;
+    id: number;
     title: string;
     checked: boolean;
 }
