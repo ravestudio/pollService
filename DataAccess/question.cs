@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -6,38 +6,38 @@ using System.Linq;
 namespace pollService.DataAccess
 {
     /// <summary>
-    /// Сущность вопросов
+    /// РЎСѓС‰РЅРѕСЃС‚СЊ РІРѕРїСЂРѕСЃРѕРІ
     /// </summary>
     public class Question
     {
         public int Id { get; set; }
         /// <summary>
-        /// Заголовок вопроса
+        /// Р—Р°РіРѕР»РѕРІРѕРє РІРѕРїСЂРѕСЃР°
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Список ответов
+        /// РЎРїРёСЃРѕРє РѕС‚РІРµС‚РѕРІ
         /// </summary>
         public ICollection<AnswerOption> AnswerOptions { get; set; }
 
         /// <summary>
-        /// текст ответа
+        /// С‚РµРєСЃС‚ РѕС‚РІРµС‚Р°
         /// </summary>
         public string TextAnswer { get; set; }
         /// <summary>
-        /// ответ пользователя
+        /// РѕС‚РІРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         /// </summary>
         [NotMapped]
         public int UserAnswer { get; set; }
 
         /// <summary>
-        /// ответ пользователя, произвольной формы
+        /// РѕС‚РІРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, РїСЂРѕРёР·РІРѕР»СЊРЅРѕР№ С„РѕСЂРјС‹
         /// </summary>
         [NotMapped]
         public string UserTextAnswer { get; set; }
         
         /// <summary>
-        /// тип вопроса
+        /// С‚РёРї РІРѕРїСЂРѕСЃР°
         /// </summary>
         public int QuestionType { get; set; }
     }

@@ -1,24 +1,24 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 
 namespace pollService.DataAccess
 {
     /// <summary>
-    /// сущность БД тест
+    /// СЃСѓС‰РЅРѕСЃС‚СЊ Р‘Р” С‚РµСЃС‚
     /// </summary>
     public class Quiz
     {
         public int Id { get; set; }
         /// <summary>
-        /// Заголовок теста
+        /// Р—Р°РіРѕР»РѕРІРѕРє С‚РµСЃС‚Р°
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Ссылка на тетс
+        /// РЎСЃС‹Р»РєР° РЅР° С‚РµС‚СЃ
         /// </summary>
         public string Permalink { get; set; }
         /// <summary>
-        /// список вопросов
+        /// СЃРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ
         /// </summary>
         public ICollection<Question> Questions { get; set; }
     }

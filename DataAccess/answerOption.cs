@@ -1,26 +1,26 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pollService.DataAccess
 {
     /// <summary>
-    /// вариант ответа
+    /// РІР°СЂРёР°РЅС‚ РѕС‚РІРµС‚Р°
     /// </summary>
     public class AnswerOption
     {
         public int Id { get; set; }
         /// <summary>
-        /// заголовое варианта
+        /// Р·Р°РіРѕР»РѕРІРѕРµ РІР°СЂРёР°РЅС‚Р°
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// корректность варианта
+        /// РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ РІР°СЂРёР°РЅС‚Р°
         /// </summary>
         public bool Correct { get; set; }
 
         /// <summary>
-        /// признак того, что пользователь выбрал вариант
+        /// РїСЂРёР·РЅР°Рє С‚РѕРіРѕ, С‡С‚Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» РІР°СЂРёР°РЅС‚
         /// </summary>
         [NotMapped]
         public bool Checked { get; set; }

@@ -1,21 +1,21 @@
-using Microsoft.EntityFrameworkCore;
+п»їusing Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace pollService.DataAccess
 {
 
     /// <summary>
-    /// контекст базы данных
+    /// РєРѕРЅС‚РµРєСЃС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
     /// </summary>
     public class PollContext : DbContext
     {
         /// <summary>
-        /// хранилище вопросников
+        /// С…СЂР°РЅРёР»РёС‰Рµ РІРѕРїСЂРѕСЃРЅРёРєРѕРІ
         /// </summary>
         public DbSet<Quiz> QuizSet { get; set; }
 
         /// <summary>
-        /// хранилище статистики
+        /// С…СЂР°РЅРёР»РёС‰Рµ СЃС‚Р°С‚РёСЃС‚РёРєРё
         /// </summary>
         public DbSet<QuizResult> QuizResultSet {get; set;}
 

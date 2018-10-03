@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +13,7 @@ namespace pollService.Controllers
     public class QuizController : ControllerBase
     {
         /// <summary>
-        /// Получить все тесты
+        /// РџРѕР»СѓС‡РёС‚СЊ РІСЃРµ С‚РµСЃС‚С‹
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -30,7 +30,7 @@ namespace pollService.Controllers
         }
 
         /// <summary>
-        /// получить тесты по ссылке
+        /// РїРѕР»СѓС‡РёС‚СЊ С‚РµСЃС‚С‹ РїРѕ СЃСЃС‹Р»РєРµ
         /// </summary>
         /// <param name="permalink"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace pollService.Controllers
                 result = db.QuizSet.Include("Questions").Include("Questions.AnswerOptions").Single(q => q.Permalink == permalink);
             }
 
-            //спрятать корректные ответы
+            //СЃРїСЂСЏС‚Р°С‚СЊ РєРѕСЂСЂРµРєС‚РЅС‹Рµ РѕС‚РІРµС‚С‹
             foreach(var question in result.Questions)
             {
                 question.TextAnswer = null;
