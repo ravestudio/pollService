@@ -3,21 +3,21 @@
 <div *ngIf="quiz">
 
   <div *ngFor="let question of quiz.questions">
-    {{question.title}} {{question.questionType}}
+    <h3>{{question.title}}</h3>
 
-    <ul *ngIf="question.questionType == 2">
+    <ul *ngIf="question.questionType == 2" class="answer">
       <li *ngFor="let answer of question.answerOptions">
         <input type="checkbox" [(ngModel)]="answer.checked">{{answer.title}}
       </li>
     </ul>
 
-    <div *ngIf="question.questionType == 1">
+    <ul *ngIf="question.questionType == 1" class="answer">
 
-      <div *ngFor="let answer of question.answerOptions">
+      <li *ngFor="let answer of question.answerOptions">
         <input type="radio" value="{{answer.id}}" name="{{'answerRadio' + question.id}}" [(ngModel)]="question.userAnswer" />{{answer.title}}
-      </div>
+      </li>
 
-    </div>
+    </ul>
 
     <div *ngIf="question.questionType == 3">
       <input type="text" [(ngModel)] ="question.userTextAnswer" />
@@ -26,6 +26,8 @@
 
   </div>
 
-  <button (click)="SendAnswers()">Send Answers</button>
+  <p>
+    <button (click)="SendAnswers()">Send Answers</button>
+  </p>
 
 </div>

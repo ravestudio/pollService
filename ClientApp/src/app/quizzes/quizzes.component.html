@@ -2,6 +2,6 @@
 
 <p *ngIf="!quizzes"><em>Loading...</em></p>
 
-<ul *ngIf="quizzes">
+<ul *ngIf="quizzes" class="question">
   <li *ngFor="let quiz of quizzes"><a routerLink="/{{quiz.permalink}}">{{quiz.title}}</a></li>
 </ul>
