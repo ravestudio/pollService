@@ -12,6 +12,10 @@ namespace pollService.Controllers
     [ApiController]
     public class QuizController : ControllerBase
     {
+        /// <summary>
+        /// ѕолучить все тесты
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<Quiz> Get()
         {
@@ -25,6 +29,11 @@ namespace pollService.Controllers
             return quizzes;
         }
 
+        /// <summary>
+        /// получить тесты по ссылке
+        /// </summary>
+        /// <param name="permalink"></param>
+        /// <returns></returns>
         [HttpGet("{permalink}")]
         public Quiz Get(string permalink)
         {
@@ -35,7 +44,7 @@ namespace pollService.Controllers
                 result = db.QuizSet.Include("Questions").Include("Questions.AnswerOptions").Single(q => q.Permalink == permalink);
             }
 
-            //hide correct answers
+            //спр€тать корректные ответы
             foreach(var question in result.Questions)
             {
                 question.TextAnswer = null;

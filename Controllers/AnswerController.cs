@@ -9,11 +9,19 @@ using pollService.DataAccess;
 
 namespace pollService.Controllers
 {
+    /// <summary>
+    /// контроллер для записи результатов, и получения статистики
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AnswerController : ControllerBase
     {
 
+        /// <summary>
+        /// получить статистику по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public Statistics Get(int id)
         {
@@ -29,6 +37,11 @@ namespace pollService.Controllers
             return statistics;
         }
 
+        /// <summary>
+        /// сохранить результат тетирования
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromBody] Quiz value)
         {
@@ -40,11 +53,13 @@ namespace pollService.Controllers
 
             Quiz originalQuiz = null;
 
+            //получить из базы вопрос с ответами
             using (var db = new PollContext())
             {
                 originalQuiz = db.QuizSet.Include("Questions").Include("Questions.AnswerOptions").Single(q => q.Id == value.Id);
             }
 
+            //сверить ответы пользователя с реальными, и записать ответы
             foreach(var question in value.Questions)
             {
                 var originalQuest = originalQuiz.Questions.Single(q => q.Id == question.Id);
@@ -59,7 +74,7 @@ namespace pollService.Controllers
                     });
                 }
 
-                //
+                
                 if (originalQuest.QuestionType == 2)
                 {
                     var userAnswers = question.AnswerOptions.Where(o => o.Checked).Select(o => o.Id);
@@ -86,13 +101,14 @@ namespace pollService.Controllers
                 }
             }
 
+            //посчитать количество верных ответов
             statstic.CorrectAnswersCount = statstic.Items.Count(i => i.CorrectAnswer);
 
             var jsonString = JsonConvert.SerializeObject(statstic);
 
             QuizResult quizResult = null;
 
-            //save quiz result
+            //сохранить результат для статистики, в json формате
             using (var db = new PollContext())
             {
                 quizResult = new QuizResult()
